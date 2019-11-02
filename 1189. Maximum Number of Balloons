@@ -1,0 +1,11 @@
+//https://leetcode.com/problems/maximum-number-of-balloons/
+
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        map<char,int> bal;
+        for(char b: text)
+            bal[b]++;
+            return min({bal['b'],bal['a'],bal['l']/2,bal['o']/2,bal['n']});
+    }
+};
