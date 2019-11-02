@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/sort-array-by-parity/
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& A) {
+        vector<int> even;
+        vector<int> odd;
+        vector<int> all;
+        for (int i=0;i<A.size();i++){
+            if (A[i]%2==0)
+                even.push_back(A[i]);
+        }
+        for (int i=0;i<A.size();i++){
+            if (A[i]%2!=0)
+                odd.push_back(A[i]);
+        }
+        all.reserve(even.size()+odd.size());
+        all.insert(all.end(),even.begin(),even.end());
+        all.insert(all.end(),odd.begin(),odd.end());
+        return all;
+        
+    }
+};
