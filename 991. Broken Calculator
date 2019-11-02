@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/broken-calculator/
+
+class Solution {
+public:
+    int brokenCalc(int X, int Y) {
+        if(X>=Y){
+        return X-Y;
+        }
+         int a=0;
+         if(Y%2){
+            a=brokenCalc(X,Y+1)+1;
+         }else{
+             a=brokenCalc(X,Y/2)+1;
+         }  
+     return a;
+    }
+};
