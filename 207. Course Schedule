@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/course-schedule/
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        bool myCourses[numCourses];
+        for (int i=0; i<numCourses; ++i)
+            myCourses[i] = 0;
+        vector<vector<int>> pre(numCourses);
+        for (int i=0; i<prerequisites.size(); ++i)
+            pre[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        int last = 0;
+        int check = 0;
+        bool flag = true;
+        while (flag){
+            if (!myCourses[check]){
+                bool take = 1;
+                for(int i=0; take && i<pre[check].size(); ++i)
+                    if (!myCourses[pre[check][i]]) 
+                        take = 0;
+                if (take) {
+                    myCourses[check] = 1;
+                    last = check;
+                }
+            }
+            ++check;
+            check %= numCourses;
+            if (check == last)
+                flag = false;
+        }
+        for(int i=0; i<numCourses; ++i)
+            if (!myCourses[i])
+                return 0;
+        return 1;
+    }
+};
