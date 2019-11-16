@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/smallest-range-i/
+
+class Solution {
+public:
+    int smallestRangeI(vector<int>& A, int K) {
+        int small = A[0], big = A[0];
+        for (int x: A){
+            small= min(small, x);
+            big= max(big, x);
+        }
+        return max(0, big-small-2*K);
+    }
+};
