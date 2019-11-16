@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/base-7/
+
+
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if (num==0)
+            return "0";
+        if (num<0)
+            return "-"+convertToBase7(-num);
+        //тернарная условная операция ака если больше 7, то делим, если нет, то пишем
+        return (num>=7 ? convertToBase7(num/7): "")+(char)(48 + num % 7); 
+    }
+};
