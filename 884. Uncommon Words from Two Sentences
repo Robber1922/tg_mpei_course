@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/uncommon-words-from-two-sentences/
+
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        map<string, int> count;
+        istringstream is (A + " " + B);
+        while (is>>A) 
+            count[A]++;
+        vector<string> res;
+        for (auto c: count)
+            if (c.second==1)
+                res.push_back(c.first);
+        return res;
+    }
+};
