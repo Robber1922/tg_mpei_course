@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+
+class Solution {
+public:
+    string removeDuplicates(string S) {
+        string res = "";
+		for(auto &s : S) {
+			if(res.size() and res.back() == s)
+				res.pop_back();
+			else
+				res.push_back(s);
+		}
+		return res;
+    }
+};
