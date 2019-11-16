@@ -1,0 +1,23 @@
+//leetcode.com/problems/isomorphic-strings/
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+       if (s.size()!=t.size())
+           return false;
+        char sw[256]={0}, tw[256]={0};
+        for (int i=0; i<s.size();i++){
+            if (sw[s[i]]==0)
+                sw[s[i]]=t[i];
+            else if
+                (sw[s[i]]!=t[i])
+                return false;
+            if (tw[t[i]]==0)
+                tw[t[i]]=s[i];
+            else if
+                (tw[t[i]]!=s[i])
+                return false;
+        }
+        return true;
+    }
+};
