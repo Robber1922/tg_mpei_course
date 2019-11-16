@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        array<int,10000> m = {};
+    
+    for(auto i:A) ++m[i];
+   auto it = find(m.begin(),m.end(),A.size()/2);
+    
+        return (it - m.begin());  
+    }
+};
