@@ -1,0 +1,31 @@
+//https://leetcode.com/problems/find-common-characters/
+
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& A) {
+           vector<int> min_counts(26,0);
+            for(auto& x:A[0]){
+                min_counts[x-'a']++;
+                }
+            vector<int> cmp(26,0);
+            for(auto& x:A){
+                for(auto& y:x){
+                    cmp[y-'a']++;
+                }
+                for(int i=0;i<min_counts.size();i++){
+                    min_counts[i] = min(min_counts[i],cmp[i]);
+                    cmp[i] = 0;
+                }
+            }
+            vector<string> res;
+            for(int i=0;i<min_counts.size();i++){
+                string tmp;
+                while (min_counts[i]) {
+                    tmp = i+'a';
+                    res.push_back(tmp);
+                    min_counts[i]--;
+                }
+        }
+            return res; 
+    }
+};
