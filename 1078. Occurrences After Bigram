@@ -1,0 +1,41 @@
+//https://leetcode.com/problems/occurrences-after-bigram/
+
+class Solution {
+public:
+    vector<string> findOcurrences(string text, string first, string second) {
+        int i = 0;
+        string temp = "";
+        vector<string> v;
+        while(i < text.length()){
+            if(text[i] == ' '){
+                if(temp != ""){
+                    v.push_back(temp);
+                }
+                temp = "";
+            }
+            else{
+                temp += text[i];
+            }
+            i++;
+        }
+        if(temp != ""){
+            v.push_back(temp);
+            temp = "";
+        }
+        
+        
+        vector<string> res;
+        
+        if(v.size() <= 2){
+            return res;
+        }
+        
+        for(i = 0;i<v.size() - 2;i++){
+            if(v[i] == first && v[i + 1] == second){
+                res.push_back(v[i + 2]);
+            }
+        }
+        
+        return res;    
+    }
+};
