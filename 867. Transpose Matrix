@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/transpose-matrix/
+
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& A) {
+        int R = A.size(), C = A[0].size();
+         vector<vector<int>> res(A[0].size(),vector<int>(A.size(),0));
+        for (int i=0; i<R; ++i)
+            for (int j=0; j<C; ++j){
+                res[j][i]=A[i][j];
+            }
+        
+        return res;
+    }
+};
