@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/keyboard-row/
+
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector <string> onerow;
+        
+        set <char> row1 {'q','w','e','r','t','y','u','i','o','p'};
+        set <char> row2 {'a','s','d','f','g','h','j','k','l'};
+        set <char> row3 {'z','x','c','v','b','n','m'};
+        vector<set<char>> rows {row1,row2,row3};
+        
+        for (int i=0; i<words.size(); i++){
+            int row=0;
+            for (int r=0; r<3; r++){
+                if (rows[r].count((char)tolower(words[i][0]))>0)
+                    row=r;
+            }
+            onerow.push_back(words[i]);
+            for (int j=0; j<words[i].size();j++){
+                if (rows[row].count((char)tolower(words[i][j]))==0){
+                    onerow.pop_back();
+                    break;
+                }
+            }
+        }
+        return onerow;
+    }
+};
