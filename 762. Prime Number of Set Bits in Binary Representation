@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
+
+class Solution {
+public:
+    int countPrimeSetBits(int L, int R) {
+        set<int> primes={2,3,5,7,11,13,17,19,23,29,31};
+        int res=0;
+        
+        for (int i=L; i<=R; i++){
+            int count = 0;
+            int n = i;
+            while(n){
+                n = n&(n-1);
+                count++;
+            }
+            if (primes.find(count) != primes.end()){
+                res++;
+            }
+        }
+        return res;
+    }
+};
