@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/unique-email-addresses/
+
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        set<string> seen;
+       for (string &email : emails) {
+        int pos = email.find('@');
+        string local = email.substr(0, pos);
+        string domain = email.substr(pos);
+        pos = local.find_first_of('+');
+        local = local.substr(0, pos);
+        while ((pos = local.find('.')) != string::npos) local.erase(pos, 1);
+        
+       seen.insert(local + domain);
+    }
+    return seen.size();
+    }
+};
