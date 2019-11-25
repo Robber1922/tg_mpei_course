@@ -1,0 +1,46 @@
+//https://leetcode.com/problems/subdomain-visit-count/
+
+class Solution {
+public:
+    vector<string> subdomainVisits(vector<string>& cpdomains) {
+        map<string, int> domains;
+        int i=0;
+        
+        vector <string> res;
+         if(cpdomains.size()==0){
+            return res;
+        }
+        for (string a: cpdomains){
+            while (a[i]!=' '){
+                i++;
+            }
+            string num = a.substr(0,i);
+            string dom = a.substr(i+1,a.length()-1);
+            for (int st=dom.length()-1;st>=0;--st){
+                if (dom[st]=='.'){
+                    string fir = dom.substr(st+1,dom.length()-1);
+                    if(domains.find(fir)!= domains.end()){
+                        domains[fir] = domains[fir]+ stoi(num);
+                    }
+                    else {
+                        domains[fir] = stoi(num); 
+                    }
+                }
+                if (st==0){
+                    string sec = dom.substr(0,dom.length());
+                    if(domains.find(sec)!= domains.end()){
+                        domains[sec] = domains[sec]+ stoi(num);
+                    }
+                    else {
+                        domains[sec] = stoi(num); 
+                    }
+                }
+                }
+            i=0;
+                }
+        for(auto d: domains){
+            res.push_back(to_string(d.second)+ " "+ d.first);
+        }
+        return res;
+    }
+};
