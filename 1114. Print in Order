@@ -1,0 +1,31 @@
+//https://leetcode.com/problems/print-in-order/
+
+class Foo {
+public:
+    bool firstbb=false;
+    bool secondbb=false;
+    Foo() {
+        
+    }
+
+    void first(function<void()> printFirst) {
+        
+        // printFirst() outputs "first". Do not change or remove this line.
+        
+        printFirst();
+        firstbb=true;
+    }
+
+    void second(function<void()> printSecond) {
+        while (!firstbb){}
+        // printSecond() outputs "second". Do not change or remove this line.
+        printSecond();
+        secondbb=true;
+    }
+
+    void third(function<void()> printThird) {
+        while(!secondbb){}
+        // printThird() outputs "third". Do not change or remove this line.
+        printThird();
+    }
+};
