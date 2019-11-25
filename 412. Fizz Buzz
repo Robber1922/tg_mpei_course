@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/fizz-buzz/
+
+class Solution {
+public:
+    vector<string> fizzBuzz(int n) {
+       vector <string> res;
+        
+        for (int i=1; i<=n; i++){
+            bool krat3= (i%3 == 0);
+            bool krat5= (i%5 == 0);
+            
+            if (krat3 && krat5){
+                res.push_back("FizzBuzz");
+            }
+            else if (krat3){
+                res.push_back("Fizz");
+            }
+            else if (krat5){
+                res.push_back("Buzz");
+            }
+            else 
+                res.push_back(to_string(i));
+        }
+        return res;
+    }
+};
