@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/n-th-tribonacci-number/
+
+class Solution {
+public:
+    int tribonacci(int n) {
+        int T0=0, T1=1, T2=1;
+        int Tn3, Tn=T0, Tn1=T1, Tn2=T2;
+        
+        if (n==0)
+            return T0;
+        else if (n==1)
+            return T1;
+        else if (n==2)
+            return T2;
+        
+        else{
+            n-=2;
+            while (n--){
+                Tn3 = Tn + Tn1 + Tn2;
+                Tn = Tn1;
+                Tn1 = Tn2;
+                Tn2 = Tn3;
+                
+            }
+            return Tn3;
+        }
+    }
+};
