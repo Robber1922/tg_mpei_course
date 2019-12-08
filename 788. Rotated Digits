@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/rotated-digits/
+
+class Solution {
+public:
+    int rotatedDigits(int N) {
+        int rot=0;
+        for (int i=0; i<=N; i++){
+            string s (to_string(i));
+            set <char> c (s.begin(),s.end());
+            if (c.count('3') || c.count('4') || c.count('7'))
+                continue;
+            if (c.count('2') || c.count('5') || c.count('6') || c.count('9'))
+                rot++;
+        }
+        return rot; 
+    }
+};
