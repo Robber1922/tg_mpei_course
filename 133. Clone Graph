@@ -1,0 +1,41 @@
+//https://leetcode.com/problems/clone-graph/
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+
+    Node() {}
+
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+*/
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if(node == NULL) 
+            return NULL;
+        map<Node*,Node*> hash; 
+        queue<Node*> queue; 
+        Node *root = new Node(node->val,{});
+        hash[node] = root;
+        queue.push(node);
+        while(!queue.empty()){
+            Node *cur = queue.front(); //первый элем
+            queue.pop();
+            for(int i=0; i<cur->neighbors.size();i++){
+                if(hash.find(cur->neighbors[i])==hash.end()){
+                    hash[cur->neighbors[i]] = new Node(cur->neighbors[i]->val,{});
+                    queue.push(cur->neighbors[i]);
+                }
+                hash[cur]->neighbors.push_back(hash[cur->neighbors[i]]);
+            }
+        }
+        return root;
+    }
+};
