@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/distance-between-bus-stops/
+
+class Solution {
+public:
+    int distanceBetweenBusStops(vector<int>& distance, int start, int destination) {
+        int miles1 = 0, miles2 = 0;
+        if (start > destination) {
+            swap(start, destination);
+        }
+        for (int i = start; i < destination % distance.size(); i++) {
+            miles1 += distance[i];
+        }
+        for (int i = destination; i < start + distance.size(); i++) {
+            miles2 += distance[i % distance.size()];
+        }
+        return min(miles1, miles2);
+    }
+};
