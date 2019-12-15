@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/as-far-from-land-as-possible/
+
+class Solution {
+public:
+    int maxDistance(vector<vector<int>>& grid) {
+        int n = grid.size(), m = grid[0].size();
+        queue<pair<int, int>> q;
+        for(int i = 0; i < grid.size(); i++)
+            for(int j = 0; j < grid.size(); j++)
+                if(grid[i][j])
+                    q.push({i, j});
+        if(q.size() == m*n) 
+            return -1;
+        
+        int res = -1, level = q.size();
+        while(q.size()) {
+            pair<int, int> cur = q.front(); q.pop();
+            int i = cur.first, j = cur.second;
+            for(int di = -1; di <= 1; di++) 
+                for(int dj = -1; dj <= 1; dj++) 
+                    if(!(di&dj) && i + di >= 0 && i + di < n && j + dj >= 0 && j + dj < m && grid[i + di][j + dj] == 0) {
+                        q.push({i + di, j + dj});
+                        grid[i + di][j + dj] = 1;
+                    }
+            
+            if(--level == 0) {
+                res++;
+                level = q.size();
+            }
+        }
+        
+        return res;
+    }
+};
