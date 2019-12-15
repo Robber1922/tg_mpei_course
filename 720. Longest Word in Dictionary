@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/longest-word-in-dictionary/
+
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        sort(words.begin(), words.end());
+        stack<string> s;
+        s.push("");
+        int maxLen = 0;
+        string res;
+        for (string& w : words) {
+            while (s.top() != w.substr(0, s.top().size())) s.pop();
+            if (s.top().size() != w.size() - 1 ) 
+                continue;
+            s.push(w);
+            if (s.size() > maxLen) {
+                maxLen = s.size();
+                res = s.top();
+            }
+        }
+        return res;
+    }
+};
