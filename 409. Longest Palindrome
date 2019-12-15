@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/longest-palindrome/
+
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        vector<int> vec(52, 0);
+        int counts = 0;
+        for (auto c : s) {
+            int index = c < 'a' ? c - 'A' + 26 : c - 'a';
+            if (++vec[index] & 1) 
+                counts++;
+            else
+                counts--; 
+        }
+        return s.size() - max(0, counts - 1);    
+    }
+};
