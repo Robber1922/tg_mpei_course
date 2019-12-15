@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/last-stone-weight/
+
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        int stsize = stones.size() - 1;
+        
+        while (stsize > 0) {
+            sort(stones.begin(), stones.begin() + stsize + 1);
+            int f = stones[stsize];
+            int s = stones[stsize - 1];
+            int newStone = abs(s - f);
+            stones[stsize - 1] = newStone;
+            stsize--;
+        }
+
+        return stones[0];
+    }
+};
