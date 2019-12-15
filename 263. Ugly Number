@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/ugly-number/
+
+class Solution {
+public:
+    int calculation(int n,const int x){
+        while(n%x==0)
+            n/=x;
+        return n;
+    }
+    
+    bool isUgly(int num) {
+        if(num<=0)
+            return false;
+        return calculation(calculation(calculation(num,2),3),5)==1;
+    }
+};
