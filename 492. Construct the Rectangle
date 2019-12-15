@@ -1,0 +1,11 @@
+//https://leetcode.com/problems/construct-the-rectangle/
+
+class Solution {
+public:
+    vector<int> constructRectangle(int area) {
+        int kek = sqrt(area);
+        while(kek > 0 && area%kek != 0)
+            --kek;
+        return vector<int>{area/kek, kek};
+    }
+};
