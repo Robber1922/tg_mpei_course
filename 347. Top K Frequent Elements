@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/top-k-frequent-elements/
+
+//nth_element - переупорядочивает последовательность, ограниченную диапазоном [first,last), так что все элементы, меньшие чем тот, на который указывает итератор nth, оказываются перед ним, а все большие элементы - после. 
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map <int, int> count;
+        auto i = nums.begin();
+        for (int n: nums)
+            if (!count[n]++)
+                *i++ = n;
+        nums.resize(count.size());
+        nth_element(
+            nums.begin(), nums.begin() + (k), nums.end(),
+            [&](int a, int b) { return count[a] > count[b]; });
+        nums.resize(k);
+        return move(nums);
+            
+    }
+};
